@@ -11,13 +11,15 @@ const coverOf = (p) => p.data.cover || (site.showCoverFallback ? site.coverFallb
 ) : (
   <ul class="post-list">
     {posts.map((p) => (
-      <li>
+      <li class="post-item">
         <time datetime={p.data.date.toISOString()}>{fmt(p.data.date)}</time>
-        <div>
-          {coverOf(p) && <img class="thumb" src={coverOf(p)} alt="" width="160" height="84" loading="lazy" />}
-          <h3><a href={`/articulos/${p.id}/`}>{p.data.title}</a></h3>
-          {p.data.summary && <p>{p.data.summary}</p>}
-        </div>
+        <a class="post-link" href={`/articulos/${p.id}/`}>
+          {coverOf(p) && <img class="thumb" src={coverOf(p)} alt="" width="220" height="140" loading="lazy" />}
+          <div class="post-copy">
+            <h3>{p.data.title}</h3>
+            {p.data.summary && <p>{p.data.summary}</p>}
+          </div>
+        </a>
       </li>
     ))}
   </ul>
