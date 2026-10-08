@@ -9,7 +9,7 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const cover = post.data.cover || post.data.header || (site.showCoverFallback ? site.coverFallback : undefined);
+const cover = post.data.cover || (site.showCoverFallback ? site.coverFallback : undefined);
 const { Content } = await render(post);
 const date = post.data.date.toLocaleDateString('es-PE', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 ---

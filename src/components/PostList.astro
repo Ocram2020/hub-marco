@@ -4,23 +4,30 @@ import { site } from '../config';
 interface Props { posts: CollectionEntry<'articulos'>[] }
 const { posts } = Astro.props;
 const fmt = (d: Date) => d.toLocaleDateString('es-PE', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
-const coverOf = (p) => p.data.cover || (site.showCoverFallback ? site.coverFallback : undefined);
+const coverOf = (p: CollectionEntry<'articulos'>) => p.data.cover || (site.showCoverFallback ? site.coverFallback : undefined);
 ---
 {posts.length === 0 ? (
   <p class="empty">Todavía no hay artículos publicados.</p>
 ) : (
   <ul class="post-list">
-    {posts.map((p) => (
-      <li class="post-item">
-        <time datetime={p.data.date.toISOString()}>{fmt(p.data.date)}</time>
-        <a class="post-link" href={`/articulos/${p.id}/`}>
-          {coverOf(p) && <img class="thumb" src={coverOf(p)} alt="" width="220" height="140" loading="lazy" />}
-          <div class="post-copy">
-            <h3>{p.data.title}</h3>
-            {p.data.summary && <p>{p.data.summary}</p>}
-          </div>
-        </a>
-      </li>
-    ))}
+    {posts.map((p) => {
+      const cover = coverOf(p);
+      return (
+        <li>
+          <a class="post-card" href={`/articulos/${p.id}/`}>
+            <div class="post-card__body">
+              <time datetime={p.data.date.toISOString()}>{fmt(p.data.date)}</time>
+              <h3>{p.data.title}</h3>
+              {p.data.summary && <p>{p.data.summary}</p>}
+            </div>
+            {cover && (
+              <div class="post-card__media">
+                <img src={cover} alt="" width="480" height="360" loading="lazy" decoding="async" />
+              </div>
+            )}
+          </a>
+        </li>
+      );
+    })}
   </ul>
 )}
