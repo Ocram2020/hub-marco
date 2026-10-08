@@ -5,29 +5,35 @@ import { site } from '../config';
 
 const stats = [
   { value: '30+', label: 'años transformando negocios financieros' },
-  { value: '3,000', label: 'colaboradores a cargo' },
+  { value: '3,000', label: 'colaboradores liderados' },
   { value: 'US$ 2,500 MM', label: 'de portafolio gestionado' },
-  { value: '80%', label: 'de operaciones llevadas a canales alternos' },
+  { value: '80%', label: 'de operaciones migradas a canales alternos' },
 ];
 
 const trayectoria = [
   {
     role: 'Consultor de Gestión',
     org: 'B1tsoft',
-    when: 'Actualidad',
-    text: 'Acompaño a empresas e instituciones con un enfoque práctico y orientado a resultados.',
+    when: '2026 – Hoy',
+    text: 'Aporto experiencia en planificación financiera y gestión empresarial para fortalecer decisiones estratégicas y el crecimiento sostenible.',
+  },
+  {
+    role: 'Consultor independiente en finanzas y gestión',
+    org: 'Codiresa · Cooperativa Tres Cruces',
+    when: '2023 – 2026',
+    text: 'Asesoría financiera y de gestión a empresas y cooperativas en Arequipa.',
   },
   {
     role: 'Gerente Central de Negocios y Tecnología',
     org: 'Banco de la Nación',
-    when: 'Anteriormente',
-    text: 'Impulsé la integración de Plin y Yape y llevamos cerca del 80% de las operaciones a canales alternos.',
+    when: '2019 – 2020',
+    text: 'Dirigí banca de desarrollo, red de oficinas, operaciones e informática, con 3,000 colaboradores. Impulsé la integración de Plin y Yape y llevé cerca del 80% de las operaciones a canales alternos.',
   },
   {
-    role: 'Líder de la estrategia comercial de Lima',
+    role: 'Gerente Regional de Negocios, Zona Lima',
     org: 'BCP',
-    when: 'Anteriormente',
-    text: 'Llevé la participación de mercado del segmento de 0% a 34%.',
+    when: '2015 – 2019',
+    text: 'Lideré la estrategia comercial de un portafolio de US$ 250 MM y llevé la participación de mercado del segmento de 0% a 34%.',
   },
 ];
 
@@ -60,20 +66,12 @@ const enfoque = [
 
   <div class="prose about-bio">
     <p>
-      Más de 30 años transformando negocios financieros desde adentro. He dirigido, al mismo
-      tiempo, negocio, riesgos, operaciones, tecnología y personas, y esa mirada integral es lo
-      que llevo a cada asesoría.
+      Sé transformar negocios financieros porque he dirigido, al mismo tiempo, negocio, riesgos,
+      operaciones, tecnología y personas. Esa mirada integral es lo que llevo a cada asesoría.
     </p>
     <p>
-      Fui Gerente Central de Negocios y Tecnología del Banco de la Nación, con 3,000
-      colaboradores a cargo y un portafolio de US$ 2,500 millones. Impulsé la integración de
-      Plin y Yape y llevamos cerca del 80% de las operaciones a canales alternos. Antes, en el
-      BCP, lideré la estrategia comercial de Lima y llevé la participación de mercado del
-      segmento de 0% a 34%.
-    </p>
-    <p>
-      Hoy acompaño a empresas e instituciones como consultor de gestión, con un enfoque
-      práctico y orientado a resultados.
+      Mi experiencia ejecutiva abarca banca mayorista, gran pyme, riesgos, operaciones y
+      transformación digital, siempre con un enfoque práctico y orientado a resultados.
     </p>
   </div>
 
@@ -91,7 +89,7 @@ const enfoque = [
     ))}
   </ol>
 
-  <h2 class="section-title">En qué me enfoco</h2>
+  <h2 class="section-title">En qué puedo ayudarte</h2>
   <ul class="focus">
     {enfoque.map((f, i) => (
       <li><span class="focus__num">{String(i + 1).padStart(2, '0')}</span><p>{f}</p></li>
