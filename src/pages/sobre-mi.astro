@@ -4,44 +4,35 @@ import Cta from '../components/Cta.astro';
 import { site } from '../config';
 
 const stats = [
-  { value: '30+', label: 'años transformando negocios financieros' },
+  { value: '30+', label: 'años en banca y negocios financieros' },
+  { value: '22', label: 'años en el BCP: de funcionario a gerente regional' },
   { value: '3,000', label: 'colaboradores liderados' },
   { value: 'US$ 2,500 MM', label: 'de portafolio gestionado' },
-  { value: '80%', label: 'de operaciones migradas a canales alternos' },
 ];
 
 const trayectoria = [
   {
-    role: 'Consultor de Gestión',
-    org: 'B1tsoft',
-    when: '2026 – Hoy',
-    text: 'Aporto experiencia en planificación financiera y gestión empresarial para fortalecer decisiones estratégicas y el crecimiento sostenible.',
+    tag: 'Banca privada',
+    title: 'Banco de Crédito del Perú',
+    text: 'Carrera de 22 años, de la banca mayorista en provincias a la gerencia regional de Lima. Planeamiento, riesgos, banca de negocios y transformación comercial: de 0% a 34% de participación de mercado en el segmento.',
   },
   {
-    role: 'Consultor independiente en finanzas y gestión',
-    org: 'Codiresa · Cooperativa Tres Cruces',
-    when: '2023 – 2026',
-    text: 'Asesoría financiera y de gestión a empresas y cooperativas en Arequipa.',
+    tag: 'Alta dirección',
+    title: 'Banco de la Nación',
+    text: 'Gerente Central de Negocios y Tecnología. Dirigí negocio, operaciones e informática, e impulsé la integración de Plin y Yape y la migración de cerca del 80% de las operaciones a canales alternos.',
   },
   {
-    role: 'Gerente Central de Negocios y Tecnología',
-    org: 'Banco de la Nación',
-    when: '2019 – 2020',
-    text: 'Dirigí banca de desarrollo, red de oficinas, operaciones e informática, con 3,000 colaboradores. Impulsé la integración de Plin y Yape y llevé cerca del 80% de las operaciones a canales alternos.',
-  },
-  {
-    role: 'Gerente Regional de Negocios, Zona Lima',
-    org: 'BCP',
-    when: '2015 – 2019',
-    text: 'Lideré la estrategia comercial de un portafolio de US$ 250 MM y llevé la participación de mercado del segmento de 0% a 34%.',
+    tag: 'Hoy',
+    title: 'Consultoría de gestión',
+    text: 'Asesoro a empresas e instituciones en estrategia, financiamiento y transformación, con la visión de quien ha dirigido el negocio por dentro.',
   },
 ];
 
 const enfoque = [
-  'Visión estratégica y propuesta de valor para tu negocio.',
-  'Estructuración de financiamientos y generación de nuevos negocios.',
-  'Gestión de operaciones y canales digitales como soporte de la estrategia.',
-  'Conocimiento profundo del mercado peruano.',
+  'Visión estratégica y propuesta de valor',
+  'Estructuración de financiamientos y nuevos negocios',
+  'Operaciones y canales digitales al servicio de la estrategia',
+  'Conocimiento profundo del mercado peruano',
 ];
 ---
 <Base title="Sobre mí">
@@ -51,6 +42,10 @@ const enfoque = [
       <p class="eyebrow">Sobre mí</p>
       <h1>{site.name}</h1>
       <p class="role">Consultor de gestión · Más de 30 años en banca y negocios financieros</p>
+      <p class="lead">
+        Sé transformar negocios financieros porque he dirigido, al mismo tiempo, negocio,
+        riesgos, operaciones, tecnología y personas.
+      </p>
       <div class="actions">
         <a class="btn primary" href="/sesiones/">Agendar una sesión</a>
         <a class="btn secondary" href={site.linkedin} rel="noopener" target="_blank">Ver perfil en LinkedIn</a>
@@ -64,25 +59,13 @@ const enfoque = [
     ))}
   </ul>
 
-  <div class="prose about-bio">
-    <p>
-      Sé transformar negocios financieros porque he dirigido, al mismo tiempo, negocio, riesgos,
-      operaciones, tecnología y personas. Esa mirada integral es lo que llevo a cada asesoría.
-    </p>
-    <p>
-      Mi experiencia ejecutiva abarca banca mayorista, gran pyme, riesgos, operaciones y
-      transformación digital, siempre con un enfoque práctico y orientado a resultados.
-    </p>
-  </div>
-
   <h2 class="section-title">Trayectoria</h2>
   <ol class="timeline">
     {trayectoria.map((t) => (
       <li>
-        <span class="timeline__when">{t.when}</span>
+        <span class="timeline__when">{t.tag}</span>
         <div>
-          <h3>{t.role}</h3>
-          <p class="timeline__org">{t.org}</p>
+          <h3>{t.title}</h3>
           <p>{t.text}</p>
         </div>
       </li>
@@ -96,5 +79,5 @@ const enfoque = [
     ))}
   </ul>
 
-  <Cta text="En este espacio comparto lo que aprendo. Si quieres conversar sobre una decisión concreta de tu negocio, agenda una sesión conmigo." />
+  <Cta text="Si quieres conversar sobre una decisión concreta de tu negocio, agenda una sesión conmigo." />
 </Base>
