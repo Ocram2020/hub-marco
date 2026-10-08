@@ -38,3 +38,6 @@ content:
       - name: body
         label: Contenido
         type: rich-text
+      - name: cover
+        label: Imagen de portada
+        type: image

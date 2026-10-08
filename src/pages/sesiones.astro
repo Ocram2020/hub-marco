@@ -4,5 +4,23 @@ import Base from '../layouts/Base.astro';
 <Base title="Sesiones de consultoría">
   <h1>Sesiones de consultoría</h1>
   <p class="lead">Una conversación individual para resolver una decisión concreta de tu negocio.</p>
-  <p class="note">Próximo paso: aquí se incrusta el calendario de Cal.com con el pago de la sesión.</p>
+
+  <div id="cal-inline" style="width:100%; min-height:650px;"></div>
+
+  <p class="note">
+    ¿No carga el calendario?
+    <a href="https://cal.com/marco.portugal/NOMBRE-DEL-EVENTO" target="_blank" rel="noopener">Agenda aquí directamente</a>.
+  </p>
+
+  <script is:inline>
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+
+    Cal("init", "consultoria", { origin: "https://app.cal.com" });
+    Cal.ns.consultoria("inline", {
+      elementOrSelector: "#cal-inline",
+      config: { layout: "month_view" },
+      calLink: "marco.portugal/NOMBRE-DEL-EVENTO"
+    });
+    Cal.ns.consultoria("ui", { hideEventTypeDetails: false, layout: "month_view" });
+  </script>
 </Base>
