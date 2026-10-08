@@ -1,0 +1,40 @@
+# Configuración de Pages CMS: define el formulario con el que Marco escribe artículos.
+media:
+  input: public/images
+  output: /images
+
+content:
+  - name: articulos
+    label: Artículos
+    type: collection
+    path: src/content/articulos
+    filename: "{primary}.md"
+    view:
+      fields: [title, date, draft]
+      primary: title
+      sort: [date]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Título
+        type: string
+        required: true
+      - name: date
+        label: Fecha de publicación
+        type: date
+        required: true
+      - name: summary
+        label: Resumen (1 o 2 frases)
+        type: text
+      - name: linkedin
+        label: Enlace al artículo en LinkedIn (opcional)
+        type: string
+      - name: draft
+        label: Borrador (si está activado, no se publica)
+        type: boolean
+        default: true
+      - name: body
+        label: Contenido
+        type: rich-text
