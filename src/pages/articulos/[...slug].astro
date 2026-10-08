@@ -1,6 +1,9 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import Cta from '../../components/Cta.astro';
 import { site } from '../../config';
 
 export async function getStaticPaths() {
@@ -12,10 +15,16 @@ const { post } = Astro.props;
 const cover = post.data.cover || (site.showCoverFallback ? site.coverFallback : undefined);
 const { Content } = await render(post);
 const date = post.data.date.toLocaleDateString('es-PE', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+
+// Otros artículos recientes para seguir leyendo.
+const otros = (await getCollection('articulos', ({ id, data }) => !data.draft && id !== post.id))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 2);
 ---
-<Base title={post.data.title} description={post.data.summary || undefined}>
+<Base title={post.data.title} description={post.data.summary || undefined} image={cover} type="article">
   <article class="article">
     <header>
+      <a class="back-link" href="/articulos/">← Todos los artículos</a>
       <time datetime={post.data.date.toISOString()}>{date}</time>
       <h1>{post.data.title}</h1>
     </header>
@@ -23,4 +32,15 @@ const date = post.data.date.toLocaleDateString('es-PE', { day: 'numeric', month:
     <div class="prose"><Content /></div>
     {post.data.linkedin && <p class="article__linkedin"><a href={post.data.linkedin} rel="noopener" target="_blank">Comenta en LinkedIn</a></p>}
   </article>
+
+  <div class="article-end">
+    <Newsletter />
+    <Cta />
+    {otros.length > 0 && (
+      <section>
+        <h2 class="section-title">Más artículos</h2>
+        <PostList posts={otros} />
+      </section>
+    )}
+  </div>
 </Base>

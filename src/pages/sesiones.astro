@@ -1,11 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
 ---
 <Base title="Sesiones de consultoría" wide>
-  <header class="sessions-head">
-    <h1>Sesiones de consultoría</h1>
-    <p class="lead">Una conversación individual para resolver una decisión concreta de tu negocio. Elige el día y la hora que mejor te acomoden.</p>
-  </header>
+  <Hero slot="hero" compact title="Sesiones de consultoría" lead="Una conversación individual para resolver una decisión concreta de tu negocio. Elige el día y la hora que mejor te acomoden." />
 
   <div class="sessions-card">
     <div id="cal-inline" class="sessions-embed"></div>

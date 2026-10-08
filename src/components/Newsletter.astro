@@ -1,0 +1,14 @@
+---
+// Formulario de newsletter (Kit) incrustado en la página, sin popup.
+import { site } from '../config';
+---
+<section class="newsletter" aria-labelledby="newsletter-title">
+  <h2 id="newsletter-title">No te pierdas lo que viene</h2>
+  <p>Recibe en tu correo nuevos artículos, ideas y análisis sobre negocios, estrategia, innovación y transformación.</p>
+  <form action={site.newsletterAction} method="post" data-sv-form={site.newsletterFormId} data-uid={site.newsletterUid} data-format="inline" data-version="5">
+    <label class="sr-only" for="newsletter-email">Correo electrónico</label>
+    <input id="newsletter-email" type="email" name="email_address" required autocomplete="email" placeholder="Tu correo electrónico" />
+    <button class="btn primary" type="submit">Suscribirme</button>
+  </form>
+  <p class="newsletter__note">Sin spam. Puedes cancelar tu suscripción cuando quieras.</p>
+</section>

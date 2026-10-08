@@ -1,0 +1,19 @@
+---
+// Panel oscuro de cierre con botones. Reutilizado en Inicio, Sobre mí y artículos.
+import { site } from '../config';
+interface Props { title?: string; text?: string }
+const {
+  title = '¿Quieres llevar tu empresa al siguiente nivel?',
+  text = 'Si quieres conversar sobre una decisión concreta de tu negocio, agenda una sesión conmigo.',
+} = Astro.props;
+---
+<section class="cta">
+  <h2>{title}</h2>
+  <p>{text}</p>
+  <div class="actions">
+    <slot>
+      <a class="btn primary" href="/sesiones/">Agendar una sesión</a>
+      <a class="btn secondary" href={site.linkedin} rel="noopener" target="_blank">LinkedIn</a>
+    </slot>
+  </div>
+</section>

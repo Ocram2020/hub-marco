@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
 import { site } from '../config';
 
 const stats = [
@@ -97,12 +98,5 @@ const enfoque = [
     ))}
   </ul>
 
-  <section class="cta">
-    <h2>¿Quieres llevar tu empresa al siguiente nivel?</h2>
-    <p>En este espacio comparto lo que aprendo. Si quieres conversar sobre una decisión concreta de tu negocio, agenda una sesión conmigo.</p>
-    <div class="actions">
-      <a class="btn primary" href="/sesiones/">Agendar una sesión</a>
-      <a class="btn secondary" href={site.linkedin} rel="noopener" target="_blank">LinkedIn</a>
-    </div>
-  </section>
+  <Cta text="En este espacio comparto lo que aprendo. Si quieres conversar sobre una decisión concreta de tu negocio, agenda una sesión conmigo." />
 </Base>

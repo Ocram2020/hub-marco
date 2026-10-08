@@ -3,6 +3,8 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import PostList from '../components/PostList.astro';
+import Newsletter from '../components/Newsletter.astro';
+import Cta from '../components/Cta.astro';
 import { site } from '../config';
 
 const posts = (await getCollection('articulos', ({ data }) => !data.draft))
@@ -19,4 +21,20 @@ const posts = (await getCollection('articulos', ({ data }) => !data.draft))
   <h2 class="section-title">Últimos artículos</h2>
   <PostList posts={posts.slice(0, 6)} />
   {posts.length > 6 && <a class="more" href="/articulos/">Ver todos los artículos</a>}
+
+  <section class="home-about">
+    <img class="avatar avatar--sm" src={site.photo} alt={`Foto de ${site.name}`} width="400" height="400" loading="lazy" />
+    <div>
+      <h2>Sobre Marco</h2>
+      <p>
+        Más de 30 años transformando negocios financieros desde adentro. Hoy acompaño a empresas
+        e instituciones como consultor de gestión, con un enfoque práctico y orientado a resultados.
+      </p>
+      <a class="more" href="/sobre-mi/">Conoce más →</a>
+    </div>
+  </section>
+
+  <Newsletter />
+
+  <Cta />
 </Base>

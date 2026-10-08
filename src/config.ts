@@ -8,4 +8,8 @@ export const site = {
   photo: '/images/marco-placeholder.jpeg',
   coverFallback: '/images/cover-placeholder.png',
   showCoverFallback: true, // false = los artículos sin portada no muestran imagen
+  // Newsletter (Kit). El formulario se muestra dentro de la página, sin popup.
+  newsletterAction: 'https://app.kit.com/forms/10019748/subscriptions',
+  newsletterFormId: '10019748',
+  newsletterUid: '7c1ddf8cfe',
 };
