@@ -8,12 +8,16 @@ const posts = (await getCollection('articulos', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 <Base>
-  <h1>{site.name}</h1>
-  <p class="lead">{site.tagline}</p>
-  <div class="actions">
-    <a class="btn primary" href="/articulos/">Leer artículos</a>
-    <a class="btn secondary" href="/sesiones/">Agendar una sesión</a>
-  </div>
+  <section slot="hero" class="hero" style={`background-image:url(${site.heroImage})`}>
+    <div class="wrap">
+      <h1>{site.name}</h1>
+      <p class="lead">{site.tagline}</p>
+      <div class="actions">
+        <a class="btn primary" href="/articulos/">Leer artículos</a>
+        <a class="btn ghost" href="/sesiones/">Agendar una sesión</a>
+      </div>
+    </div>
+  </section>
 
   <h2 class="section-title">Últimos artículos</h2>
   <PostList posts={posts.slice(0, 6)} />

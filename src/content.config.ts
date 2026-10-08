@@ -9,6 +9,7 @@ const articulos = defineCollection({
     summary: z.string().default(''),
     linkedin: z.union([z.string().url(), z.literal('')]).optional(),
     draft: z.boolean().default(false),
+    cover: z.string().optional(),
   }),
 });
 

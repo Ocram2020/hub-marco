@@ -1,8 +1,10 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { site } from '../config';
 interface Props { posts: CollectionEntry<'articulos'>[] }
 const { posts } = Astro.props;
 const fmt = (d: Date) => d.toLocaleDateString('es-PE', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const coverOf = (p) => p.data.cover || (site.showCoverFallback ? site.coverFallback : undefined);
 ---
 {posts.length === 0 ? (
   <p class="empty">Todavía no hay artículos publicados.</p>

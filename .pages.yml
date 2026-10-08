@@ -28,6 +28,9 @@ content:
       - name: summary
         label: Resumen (1 o 2 frases)
         type: text
+      - name: cover
+        label: Imagen de portada
+        type: image
       - name: linkedin
         label: Enlace al artículo en LinkedIn (opcional)
         type: string
@@ -38,6 +41,3 @@ content:
       - name: body
         label: Contenido
         type: rich-text
-      - name: cover
-        label: Imagen de portada
-        type: image

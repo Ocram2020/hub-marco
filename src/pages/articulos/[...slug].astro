@@ -1,6 +1,8 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import { site } from '../../config';
+const cover = post.data.cover || (site.showCoverFallback ? site.coverFallback : undefined);
 
 export async function getStaticPaths() {
   const posts = await getCollection('articulos', ({ data }) => !data.draft);
@@ -17,6 +19,7 @@ const date = post.data.date.toLocaleDateString('es-PE', { day: 'numeric', month:
       <time datetime={post.data.date.toISOString()}>{date}</time>
       <h1>{post.data.title}</h1>
     </header>
+    {cover && <img class="cover" src={cover} alt="" width="1200" height="630" />}
     <div class="prose"><Content /></div>
     {post.data.linkedin && <p><a href={post.data.linkedin} rel="noopener">Ver también en LinkedIn</a></p>}
   </article>
