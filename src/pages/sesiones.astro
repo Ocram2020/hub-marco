@@ -9,7 +9,7 @@ import Base from '../layouts/Base.astro';
 
   <p class="note">
     ¿No carga el calendario?
-    <a href="https://cal.com/marco.portugal/NOMBRE-DEL-EVENTO" target="_blank" rel="noopener">Agenda aquí directamente</a>.
+    <a href="https://cal.com/marco.portugal" target="_blank" rel="noopener">Agenda aquí directamente</a>.
   </p>
 
   <script is:inline>
@@ -19,7 +19,7 @@ import Base from '../layouts/Base.astro';
     Cal.ns.consultoria("inline", {
       elementOrSelector: "#cal-inline",
       config: { layout: "month_view" },
-      calLink: "marco.portugal/NOMBRE-DEL-EVENTO"
+      calLink: "marco.portugal"
     });
     Cal.ns.consultoria("ui", { hideEventTypeDetails: false, layout: "month_view" });
   </script>
