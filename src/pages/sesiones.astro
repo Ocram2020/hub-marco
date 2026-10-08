@@ -1,13 +1,17 @@
 ---
 import Base from '../layouts/Base.astro';
 ---
-<Base title="Sesiones de consultoría">
-  <h1>Sesiones de consultoría</h1>
-  <p class="lead">Una conversación individual para resolver una decisión concreta de tu negocio.</p>
+<Base title="Sesiones de consultoría" wide>
+  <header class="sessions-head">
+    <h1>Sesiones de consultoría</h1>
+    <p class="lead">Una conversación individual para resolver una decisión concreta de tu negocio. Elige el día y la hora que mejor te acomoden.</p>
+  </header>
 
-  <div id="cal-inline" style="width:100%; min-height:650px;"></div>
+  <div class="sessions-card">
+    <div id="cal-inline" class="sessions-embed"></div>
+  </div>
 
-  <p class="note">
+  <p class="sessions-fallback">
     ¿No carga el calendario?
     <a href="https://cal.com/marco.portugal" target="_blank" rel="noopener">Agenda aquí directamente</a>.
   </p>
@@ -18,9 +22,14 @@ import Base from '../layouts/Base.astro';
     Cal("init", "consultoria", { origin: "https://app.cal.com" });
     Cal.ns.consultoria("inline", {
       elementOrSelector: "#cal-inline",
-      config: { layout: "month_view" },
+      config: { layout: "month_view", theme: "light" },
       calLink: "marco.portugal"
     });
-    Cal.ns.consultoria("ui", { hideEventTypeDetails: false, layout: "month_view" });
+    Cal.ns.consultoria("ui", {
+      theme: "light",
+      hideEventTypeDetails: false,
+      layout: "month_view",
+      cssVarsPerTheme: { light: { "cal-brand": "#1d5c8a" }, dark: { "cal-brand": "#1d5c8a" } }
+    });
   </script>
 </Base>

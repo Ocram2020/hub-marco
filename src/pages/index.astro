@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
 import PostList from '../components/PostList.astro';
 import { site } from '../config';
 
@@ -8,16 +9,12 @@ const posts = (await getCollection('articulos', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 <Base>
-  <section slot="hero" class="hero" style={`background-image:url(${site.heroImage})`}>
-    <div class="wrap">
-      <h1>{site.name}</h1>
-      <p class="lead">{site.tagline}</p>
-      <div class="actions">
-        <a class="btn primary" href="/articulos/">Leer artículos</a>
-        <a class="btn ghost" href="/sesiones/">Agendar una sesión</a>
-      </div>
+  <Hero slot="hero" title={site.name} lead={site.tagline}>
+    <div class="actions">
+      <a class="btn primary" href="/articulos/">Leer artículos</a>
+      <a class="btn ghost" href="/sesiones/">Agendar una sesión</a>
     </div>
-  </section>
+  </Hero>
 
   <h2 class="section-title">Últimos artículos</h2>
   <PostList posts={posts.slice(0, 6)} />

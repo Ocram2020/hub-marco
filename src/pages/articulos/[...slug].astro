@@ -21,6 +21,6 @@ const date = post.data.date.toLocaleDateString('es-PE', { day: 'numeric', month:
     </header>
     {cover && <img class="cover" src={cover} alt="" width="1200" height="630" />}
     <div class="prose"><Content /></div>
-    {post.data.linkedin && <p><a href={post.data.linkedin} rel="noopener">Ver también en LinkedIn</a></p>}
+    {post.data.linkedin && <p class="article__linkedin"><a href={post.data.linkedin} rel="noopener" target="_blank">Comenta en LinkedIn</a></p>}
   </article>
 </Base>

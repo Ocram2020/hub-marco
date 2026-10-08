@@ -1,0 +1,15 @@
+---
+// Cabecera con imagen de fondo, compartida por Inicio y Artículos.
+// `compact` la hace más baja (para páginas interiores).
+import { site } from '../config';
+interface Props { title: string; lead?: string; eyebrow?: string; compact?: boolean }
+const { title, lead, eyebrow, compact = false } = Astro.props;
+---
+<section class:list={['hero', { 'hero--compact': compact }]} style={`background-image:url(${site.heroImage})`}>
+  <div class="wrap">
+    {eyebrow && <p class="hero__eyebrow">{eyebrow}</p>}
+    <h1>{title}</h1>
+    {lead && <p class="lead">{lead}</p>}
+    <slot />
+  </div>
+</section>

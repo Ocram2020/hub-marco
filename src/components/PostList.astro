@@ -12,20 +12,25 @@ const coverOf = (p: CollectionEntry<'articulos'>) => p.data.cover || (site.showC
   <ul class="post-list">
     {posts.map((p) => {
       const cover = coverOf(p);
+      const url = `/articulos/${p.id}/`;
       return (
-        <li>
-          <a class="post-card" href={`/articulos/${p.id}/`}>
-            <div class="post-card__body">
-              <time datetime={p.data.date.toISOString()}>{fmt(p.data.date)}</time>
-              <h3>{p.data.title}</h3>
-              {p.data.summary && <p>{p.data.summary}</p>}
+        <li class="post-card">
+          <div class="post-card__body">
+            <time datetime={p.data.date.toISOString()}>{fmt(p.data.date)}</time>
+            <h3><a href={url}>{p.data.title}</a></h3>
+            {p.data.summary && <p>{p.data.summary}</p>}
+            <div class="post-card__meta">
+              <a class="post-card__read" href={url}>Leer artículo</a>
+              {p.data.linkedin && (
+                <a class="post-card__linkedin" href={p.data.linkedin} rel="noopener" target="_blank">Comenta en LinkedIn</a>
+              )}
             </div>
-            {cover && (
-              <div class="post-card__media">
-                <img src={cover} alt="" width="480" height="360" loading="lazy" decoding="async" />
-              </div>
-            )}
-          </a>
+          </div>
+          {cover && (
+            <a class="post-card__media" href={url} tabindex="-1" aria-hidden="true">
+              <img src={cover} alt="" width="480" height="360" loading="lazy" decoding="async" />
+            </a>
+          )}
         </li>
       );
     })}

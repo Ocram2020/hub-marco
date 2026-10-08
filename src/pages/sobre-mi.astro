@@ -1,15 +1,108 @@
 ---
 import Base from '../layouts/Base.astro';
 import { site } from '../config';
+
+const stats = [
+  { value: '30+', label: 'años transformando negocios financieros' },
+  { value: '3,000', label: 'colaboradores a cargo' },
+  { value: 'US$ 2,500 MM', label: 'de portafolio gestionado' },
+  { value: '80%', label: 'de operaciones llevadas a canales alternos' },
+];
+
+const trayectoria = [
+  {
+    role: 'Consultor de Gestión',
+    org: 'B1tsoft',
+    when: 'Actualidad',
+    text: 'Acompaño a empresas e instituciones con un enfoque práctico y orientado a resultados.',
+  },
+  {
+    role: 'Gerente Central de Negocios y Tecnología',
+    org: 'Banco de la Nación',
+    when: 'Anteriormente',
+    text: 'Impulsé la integración de Plin y Yape y llevamos cerca del 80% de las operaciones a canales alternos.',
+  },
+  {
+    role: 'Líder de la estrategia comercial de Lima',
+    org: 'BCP',
+    when: 'Anteriormente',
+    text: 'Llevé la participación de mercado del segmento de 0% a 34%.',
+  },
+];
+
+const enfoque = [
+  'Visión estratégica y propuesta de valor para tu negocio.',
+  'Estructuración de financiamientos y generación de nuevos negocios.',
+  'Gestión de operaciones y canales digitales como soporte de la estrategia.',
+  'Conocimiento profundo del mercado peruano.',
+];
 ---
 <Base title="Sobre mí">
-    <div class="about">
-    <figure class="portrait">
-      <img src={site.photo} alt={`Foto de ${site.name}`} width="400" height="500" />
-    </figure>
-    <div>
-      <h1>Sobre mí</h1>
-  <p class="note">Texto provisional. Reemplazar con la biografía real de {site.name}: a qué se dedica, su experiencia y qué puede esperar quien lo lea.</p>
-  <p class="prose">Aquí irá la presentación de {site.name}, en tres o cuatro párrafos, escrita en primera persona.</p>
-  <p><a href={site.linkedin} rel="noopener">Ver perfil en LinkedIn</a></p>
+  <section class="about-hero">
+    <img class="avatar" src={site.photo} alt={`Foto de ${site.name}`} width="400" height="400" />
+    <div class="about-hero__text">
+      <p class="eyebrow">Sobre mí</p>
+      <h1>{site.name}</h1>
+      <p class="role">Consultor de gestión · Más de 30 años en banca y negocios financieros</p>
+      <div class="actions">
+        <a class="btn primary" href="/sesiones/">Agendar una sesión</a>
+        <a class="btn secondary" href={site.linkedin} rel="noopener" target="_blank">Ver perfil en LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <ul class="stats" aria-label="Cifras clave">
+    {stats.map((s) => (
+      <li><strong>{s.value}</strong><span>{s.label}</span></li>
+    ))}
+  </ul>
+
+  <div class="prose about-bio">
+    <p>
+      Más de 30 años transformando negocios financieros desde adentro. He dirigido, al mismo
+      tiempo, negocio, riesgos, operaciones, tecnología y personas, y esa mirada integral es lo
+      que llevo a cada asesoría.
+    </p>
+    <p>
+      Fui Gerente Central de Negocios y Tecnología del Banco de la Nación, con 3,000
+      colaboradores a cargo y un portafolio de US$ 2,500 millones. Impulsé la integración de
+      Plin y Yape y llevamos cerca del 80% de las operaciones a canales alternos. Antes, en el
+      BCP, lideré la estrategia comercial de Lima y llevé la participación de mercado del
+      segmento de 0% a 34%.
+    </p>
+    <p>
+      Hoy acompaño a empresas e instituciones como consultor de gestión, con un enfoque
+      práctico y orientado a resultados.
+    </p>
+  </div>
+
+  <h2 class="section-title">Trayectoria</h2>
+  <ol class="timeline">
+    {trayectoria.map((t) => (
+      <li>
+        <span class="timeline__when">{t.when}</span>
+        <div>
+          <h3>{t.role}</h3>
+          <p class="timeline__org">{t.org}</p>
+          <p>{t.text}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+
+  <h2 class="section-title">En qué me enfoco</h2>
+  <ul class="focus">
+    {enfoque.map((f, i) => (
+      <li><span class="focus__num">{String(i + 1).padStart(2, '0')}</span><p>{f}</p></li>
+    ))}
+  </ul>
+
+  <section class="cta">
+    <h2>¿Quieres llevar tu empresa al siguiente nivel?</h2>
+    <p>En este espacio comparto lo que aprendo. Si quieres conversar sobre una decisión concreta de tu negocio, agenda una sesión conmigo.</p>
+    <div class="actions">
+      <a class="btn primary" href="/sesiones/">Agendar una sesión</a>
+      <a class="btn secondary" href={site.linkedin} rel="noopener" target="_blank">LinkedIn</a>
+    </div>
+  </section>
 </Base>
