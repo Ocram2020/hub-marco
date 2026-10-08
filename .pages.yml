@@ -1,7 +1,7 @@
 # Configuración de Pages CMS: define el formulario con el que Marco escribe artículos.
 media:
-  input: public/images
-  output: /images
+  input: public/images/articulos
+  output: /images/articulos
 
 content:
   - name: articulos
@@ -29,15 +29,18 @@ content:
         label: Resumen (1 o 2 frases)
         type: text
       - name: cover
-        label: Imagen de portada
+        label: Imagen de portada / cabecera
+        type: image
+      - name: header
+        label: Imagen alternativa de cabecera (opcional)
         type: image
       - name: linkedin
         label: Enlace al artículo en LinkedIn (opcional)
         type: string
+      - name: body
+        label: Contenido
+        type: rich-text
       - name: draft
         label: Borrador (si está activado, no se publica)
         type: boolean
         default: true
-      - name: body
-        label: Contenido
-        type: rich-text

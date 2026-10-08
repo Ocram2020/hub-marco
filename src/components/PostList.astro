@@ -14,6 +14,7 @@ const coverOf = (p) => p.data.cover || (site.showCoverFallback ? site.coverFallb
       <li>
         <time datetime={p.data.date.toISOString()}>{fmt(p.data.date)}</time>
         <div>
+          {coverOf(p) && <img class="thumb" src={coverOf(p)} alt="" width="160" height="84" loading="lazy" />}
           <h3><a href={`/articulos/${p.id}/`}>{p.data.title}</a></h3>
           {p.data.summary && <p>{p.data.summary}</p>}
         </div>
