@@ -5,7 +5,7 @@ summary: Luego de su reunión con la presidencia USA, Meta está dispuesta a pag
   el costo de llegar demasiado pronto antes que arriesgarse a llegar tarde a la
   próxima gran plataforma tecnológica de la IA…la superinteligencia
   artificial...
-draft: true
+draft: false
 ---
 Luego de su reunión con la presidencia USA, Meta está dispuesta a pagar el costo de llegar demasiado pronto antes que arriesgarse a llegar tarde a la próxima gran plataforma tecnológica de la IA…la superinteligencia artificial.  
 
