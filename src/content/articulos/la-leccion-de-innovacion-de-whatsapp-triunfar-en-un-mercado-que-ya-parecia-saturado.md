@@ -5,7 +5,7 @@ date: 2026-10-05
 summary: ¿Cuales fueron los factores de éxito para que WhatsApp haya tenido y
   siga teniendo la preferencia global de comunicación?
 linkedin: https://lnkd.in/p/daPYR9ay
-draft: true
+draft: false
 ---
 El caso de negocios de WhatsApp, es un caso de innovación que trasciende lo obvio… especialmente cuando se pensaba que ya estaba todo dicho en temas de comunicación. Veamos:
 
