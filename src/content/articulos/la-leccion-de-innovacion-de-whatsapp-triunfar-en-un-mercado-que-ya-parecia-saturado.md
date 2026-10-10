@@ -4,7 +4,6 @@ title: "La Lección de Innovación de WhatsApp: Triunfar en un mercado que ya
 date: 2026-10-05
 summary: ¿Cuales fueron los factores de éxito para que WhatsApp haya tenido y
   siga teniendo la preferencia global de comunicación?
-cover: /images/IMG_0154.png
 linkedin: https://lnkd.in/p/daPYR9ay
 draft: false
 ---
