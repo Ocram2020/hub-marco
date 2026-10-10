@@ -1,0 +1,9 @@
+---
+// Texto libre. El contenido llega como HTML desde el editor de Pages CMS y se inserta tal cual
+// (sin sanear): solo lo escribe quien ya tiene permiso para publicar en el sitio.
+import type { Bloque } from '../../lib/contenido';
+interface Props { bloque: Extract<Bloque, { tipo: 'texto' }> }
+const { bloque: b } = Astro.props;
+---
+{b.titulo && <h2 class="section-title">{b.titulo}</h2>}
+{b.contenido && <div class="prose" set:html={b.contenido} />}

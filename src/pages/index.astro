@@ -1,40 +1,40 @@
 ---
+// Página de inicio. Los textos se editan desde Pages CMS ("Página de inicio" → src/data/inicio.json).
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
+import Botones from '../components/Botones.astro';
 import PostList from '../components/PostList.astro';
 import Newsletter from '../components/Newsletter.astro';
 import Cta from '../components/Cta.astro';
 import { site } from '../config';
+import { inicio } from '../lib/contenido';
 
 const posts = (await getCollection('articulos', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const { hero, articulos, sobre, newsletter, cta } = inicio;
 ---
 <Base>
-  <Hero slot="hero" title={site.name} lead={site.tagline}>
-    <div class="actions">
-      <a class="btn primary" href="/articulos/">Leer artículos</a>
-      <a class="btn ghost" href="/sesiones/">Agendar una sesión</a>
-    </div>
+  <Hero slot="hero" title={hero.titulo || site.name} lead={hero.texto || site.tagline}>
+    <Botones botones={hero.botones} secundario="ghost" />
   </Hero>
 
-  <h2 class="section-title">Últimos artículos</h2>
-  <PostList posts={posts.slice(0, 6)} />
-  {posts.length > 6 && <a class="more" href="/articulos/">Ver todos los artículos</a>}
+  <h2 class="section-title">{articulos.titulo}</h2>
+  <PostList posts={posts.slice(0, articulos.cantidad)} />
+  {posts.length > articulos.cantidad && <a class="more" href="/articulos/">{articulos.texto_ver_todos}</a>}
 
-  <section class="home-about">
-    <img class="avatar avatar--sm" src={site.photo} alt={`Foto de ${site.name}`} width="400" height="400" loading="lazy" />
-    <div>
-      <h2>Sobre Marco</h2>
-      <p>
-        Más de 30 años transformando negocios financieros desde adentro. Hoy acompaño a empresas
-        e instituciones como consultor de gestión, con un enfoque práctico y orientado a resultados.
-      </p>
-      <a class="more" href="/sobre-mi/">Conoce más →</a>
-    </div>
-  </section>
+  {sobre.mostrar && (
+    <section class="home-about">
+      <img class="avatar avatar--sm" src={site.photo} alt={`Foto de ${site.name}`} width="400" height="400" loading="lazy" />
+      <div>
+        {sobre.titulo && <h2>{sobre.titulo}</h2>}
+        {sobre.texto && <p>{sobre.texto}</p>}
+        {sobre.texto_enlace && <a class="more" href="/sobre-mi/">{sobre.texto_enlace}</a>}
+      </div>
+    </section>
+  )}
 
-  <Newsletter />
+  {newsletter.mostrar && <Newsletter />}
 
-  <Cta />
+  {cta.mostrar && <Cta title={cta.titulo} text={cta.texto} />}
 </Base>

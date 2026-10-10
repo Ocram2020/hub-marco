@@ -1,0 +1,22 @@
+---
+import type { Bloque } from '../../lib/contenido';
+interface Props { bloque: Extract<Bloque, { tipo: 'trayectoria' }> }
+const { bloque: b } = Astro.props;
+const items = b.items.filter((i) => i.titulo || i.texto);
+// Si ningún hito tiene etiqueta, se omite la columna izquierda.
+const conEtiquetas = items.some((i) => i.etiqueta);
+---
+{b.titulo && <h2 class="section-title">{b.titulo}</h2>}
+{items.length > 0 && (
+  <ol class:list={['timeline', { 'timeline--simple': !conEtiquetas }]}>
+    {items.map((i) => (
+      <li>
+        {conEtiquetas && <span class="timeline__when">{i.etiqueta}</span>}
+        <div>
+          {i.titulo && <h3>{i.titulo}</h3>}
+          {i.texto && <p>{i.texto}</p>}
+        </div>
+      </li>
+    ))}
+  </ol>
+)}

@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "titulo": "",
+    "texto": "",
+    "botones": [
+      { "texto": "Leer artículos", "destino": "articulos", "estilo": "primary" },
+      { "texto": "Agendar una sesión", "destino": "sesiones", "estilo": "secondary" }
+    ]
+  },
+  "articulos": {
+    "titulo": "Últimos artículos",
+    "cantidad": 6,
+    "texto_ver_todos": "Ver todos los artículos"
+  },
+  "sobre": {
+    "mostrar": true,
+    "titulo": "Sobre Marco",
+    "texto": "Más de 30 años transformando negocios financieros desde adentro. Hoy acompaño a empresas e instituciones como consultor de gestión, con un enfoque práctico y orientado a resultados.",
+    "texto_enlace": "Conoce más →"
+  },
+  "newsletter": { "mostrar": true },
+  "cta": { "mostrar": true, "titulo": "", "texto": "" }
+}

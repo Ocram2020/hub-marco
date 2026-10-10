@@ -1,0 +1,14 @@
+---
+import type { Bloque } from '../../lib/contenido';
+interface Props { bloque: Extract<Bloque, { tipo: 'lista' }> }
+const { bloque: b } = Astro.props;
+const items = b.items.filter(Boolean);
+---
+{b.titulo && <h2 class="section-title">{b.titulo}</h2>}
+{items.length > 0 && (
+  <ul class="focus">
+    {items.map((texto, i) => (
+      <li><span class="focus__num">{String(i + 1).padStart(2, '0')}</span><p>{texto}</p></li>
+    ))}
+  </ul>
+)}

@@ -1,0 +1,11 @@
+---
+import type { Bloque } from '../../lib/contenido';
+interface Props { bloque: Extract<Bloque, { tipo: 'imagen' }> }
+const { bloque: b } = Astro.props;
+---
+{b.imagen && (
+  <figure class="figure">
+    <img src={b.imagen} alt={b.alt} loading="lazy" decoding="async" />
+    {b.pie && <figcaption>{b.pie}</figcaption>}
+  </figure>
+)}

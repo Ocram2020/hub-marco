@@ -1,83 +1,10 @@
 ---
+// Sobre mí: página armada por bloques. Marco los edita, añade, quita y reordena desde
+// Pages CMS ("Sobre mí" → src/data/sobre-mi.json).
 import Base from '../layouts/Base.astro';
-import Cta from '../components/Cta.astro';
-import { site } from '../config';
-
-const stats = [
-  { value: '30+', label: 'años en banca y negocios financieros' },
-  { value: '22', label: 'años en el BCP: de funcionario a gerente regional' },
-  { value: '3,000', label: 'colaboradores liderados' },
-  { value: 'US$ 2,500 MM', label: 'de portafolio gestionado' },
-];
-
-const trayectoria = [
-  {
-    tag: 'Banca privada',
-    title: 'Banco de Crédito del Perú',
-    text: 'Carrera de 22 años, de la banca mayorista en provincias a la gerencia regional de Lima. Planeamiento, riesgos, banca de negocios y transformación comercial: de 0% a 34% de participación de mercado en el segmento.',
-  },
-  {
-    tag: 'Alta dirección',
-    title: 'Banco de la Nación',
-    text: 'Gerente Central de Negocios y Tecnología. Dirigí negocio, operaciones e informática, e impulsé la integración de Plin y Yape y la migración de cerca del 80% de las operaciones a canales alternos.',
-  },
-  {
-    tag: 'Hoy',
-    title: 'Consultoría de gestión',
-    text: 'Asesoro a empresas e instituciones en estrategia, financiamiento y transformación, con la visión de quien ha dirigido el negocio por dentro.',
-  },
-];
-
-const enfoque = [
-  'Visión estratégica y propuesta de valor',
-  'Estructuración de financiamientos y nuevos negocios',
-  'Operaciones y canales digitales al servicio de la estrategia',
-  'Conocimiento profundo del mercado peruano',
-];
+import BlockRenderer from '../components/blocks/BlockRenderer.astro';
+import { sobreMi } from '../lib/contenido';
 ---
-<Base title="Sobre mí">
-  <section class="about-hero">
-    <img class="avatar" src={site.photo} alt={`Foto de ${site.name}`} width="400" height="400" />
-    <div class="about-hero__text">
-      <p class="eyebrow">Sobre mí</p>
-      <h1>{site.name}</h1>
-      <p class="role">Consultor de gestión · Más de 30 años en banca y negocios financieros</p>
-      <p class="lead">
-        Sé transformar negocios financieros porque he dirigido, al mismo tiempo, negocio,
-        riesgos, operaciones, tecnología y personas.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href="/sesiones/">Agendar una sesión</a>
-        <a class="btn secondary" href={site.linkedin} rel="noopener" target="_blank">Ver perfil en LinkedIn</a>
-      </div>
-    </div>
-  </section>
-
-  <ul class="stats" aria-label="Cifras clave">
-    {stats.map((s) => (
-      <li><strong>{s.value}</strong><span>{s.label}</span></li>
-    ))}
-  </ul>
-
-  <h2 class="section-title">Trayectoria</h2>
-  <ol class="timeline">
-    {trayectoria.map((t) => (
-      <li>
-        <span class="timeline__when">{t.tag}</span>
-        <div>
-          <h3>{t.title}</h3>
-          <p>{t.text}</p>
-        </div>
-      </li>
-    ))}
-  </ol>
-
-  <h2 class="section-title">En qué puedo ayudarte</h2>
-  <ul class="focus">
-    {enfoque.map((f, i) => (
-      <li><span class="focus__num">{String(i + 1).padStart(2, '0')}</span><p>{f}</p></li>
-    ))}
-  </ul>
-
-  <Cta text="Si quieres conversar sobre una decisión concreta de tu negocio, agenda una sesión conmigo." />
+<Base title={sobreMi.seo_titulo} description={sobreMi.seo_descripcion || undefined}>
+  <BlockRenderer bloques={sobreMi.bloques} tituloRespaldo={sobreMi.seo_titulo} />
 </Base>

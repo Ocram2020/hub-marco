@@ -1,0 +1,14 @@
+---
+import type { Bloque } from '../../lib/contenido';
+interface Props { bloque: Extract<Bloque, { tipo: 'cifras' }> }
+const { bloque: b } = Astro.props;
+const items = b.items.filter((i) => i.valor);
+---
+{b.titulo && <h2 class="section-title">{b.titulo}</h2>}
+{items.length > 0 && (
+  <ul class="stats" aria-label={b.titulo || 'Cifras clave'}>
+    {items.map((i) => (
+      <li><strong>{i.valor}</strong>{i.descripcion && <span>{i.descripcion}</span>}</li>
+    ))}
+  </ul>
+)}

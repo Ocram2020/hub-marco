@@ -1,27 +1,33 @@
 ---
+// Página de sesiones. Los textos se editan desde Pages CMS ("Sesiones" → src/data/sesiones.json).
+// El usuario de Cal.com viene de "Ajustes del sitio".
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
+import { site } from '../config';
+import { sesiones } from '../lib/contenido';
+
+const calLink = site.calUser;
 ---
-<Base title="Sesiones de consultoría" wide>
-  <Hero slot="hero" compact title="Sesiones de consultoría" lead="Una conversación individual para resolver una decisión concreta de tu negocio. Elige el día y la hora que mejor te acomoden." />
+<Base title={sesiones.titulo} description={sesiones.seo_descripcion || undefined} wide>
+  <Hero slot="hero" compact title={sesiones.titulo} lead={sesiones.texto || undefined} />
 
   <div class="sessions-card">
     <div id="cal-inline" class="sessions-embed"></div>
   </div>
 
   <p class="sessions-fallback">
-    ¿No carga el calendario?
-    <a href="https://cal.com/marco.portugal" target="_blank" rel="noopener">Agenda aquí directamente</a>.
+    {sesiones.texto_ayuda}
+    <a href={`https://cal.com/${calLink}`} target="_blank" rel="noopener">{sesiones.texto_enlace}</a>.
   </p>
 
-  <script is:inline>
+  <script is:inline define:vars={{ calLink }}>
     (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
 
     Cal("init", "consultoria", { origin: "https://app.cal.com" });
     Cal.ns.consultoria("inline", {
       elementOrSelector: "#cal-inline",
       config: { layout: "month_view", theme: "light" },
-      calLink: "marco.portugal"
+      calLink: calLink
     });
     Cal.ns.consultoria("ui", {
       theme: "light",

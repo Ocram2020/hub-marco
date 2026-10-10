@@ -1,7 +1,41 @@
-# Configuración de Pages CMS: define el formulario con el que Marco escribe artículos.
+# Configuración de Pages CMS: define los formularios con los que Marco edita el sitio.
+# Cada formulario de página escribe un archivo en src/data/, validado en src/lib/contenido.ts.
 media:
   input: public/images
   output: /images
+  extensions: [jpg, jpeg, png, webp, svg]
+
+# Piezas reutilizables en varios formularios.
+components:
+  boton:
+    type: object
+    fields:
+      - name: texto
+        label: Texto del botón
+        type: string
+      - name: destino
+        label: A dónde lleva
+        type: select
+        default: sesiones
+        options:
+          values:
+            - { name: sesiones, label: Página de sesiones }
+            - { name: articulos, label: Artículos }
+            - { name: sobre-mi, label: Sobre mí }
+            - { name: linkedin, label: Mi LinkedIn }
+            - { name: otro, label: Otro enlace }
+      - name: url
+        label: Enlace
+        type: string
+        description: "Solo si elegiste «Otro enlace». Debe empezar con https://"
+      - name: estilo
+        label: Estilo
+        type: select
+        default: primary
+        options:
+          values:
+            - { name: primary, label: Destacado (relleno) }
+            - { name: secondary, label: Secundario (solo borde) }
 
 content:
   - name: articulos
@@ -41,3 +75,334 @@ content:
         label: Borrador (si está activado, no se publica)
         type: boolean
         default: true
+
+  - name: inicio
+    label: Página de inicio
+    type: file
+    path: src/data/inicio.json
+    format: json
+    fields:
+      - name: hero
+        label: Cabecera
+        type: object
+        fields:
+          - name: titulo
+            label: Título
+            type: string
+            description: Déjalo vacío para usar tu nombre (Ajustes del sitio).
+          - name: texto
+            label: Frase bajo el título
+            type: text
+            description: Déjalo vacío para usar la frase principal (Ajustes del sitio).
+          - name: botones
+            label: Botones
+            component: boton
+            list:
+              max: 3
+              collapsible:
+                summary: "{texto}"
+      - name: articulos
+        label: Últimos artículos
+        type: object
+        fields:
+          - name: titulo
+            label: Título de la sección
+            type: string
+          - name: cantidad
+            label: Cuántos artículos mostrar
+            type: number
+            description: Entre 1 y 12.
+            options: { min: 1, max: 12 }
+          - name: texto_ver_todos
+            label: Texto del enlace a todos los artículos
+            type: string
+      - name: sobre
+        label: Tarjeta «Sobre Marco»
+        type: object
+        fields:
+          - name: mostrar
+            label: Mostrar esta sección
+            type: boolean
+            default: true
+          - name: titulo
+            label: Título
+            type: string
+          - name: texto
+            label: Texto
+            type: text
+          - name: texto_enlace
+            label: Texto del enlace a «Sobre mí»
+            type: string
+      - name: newsletter
+        label: Suscripción al newsletter
+        description: Los textos se cambian en Ajustes del sitio.
+        type: object
+        fields:
+          - name: mostrar
+            label: Mostrar esta sección
+            type: boolean
+            default: true
+      - name: cta
+        label: Llamada a la acción (panel oscuro final)
+        type: object
+        fields:
+          - name: mostrar
+            label: Mostrar esta sección
+            type: boolean
+            default: true
+          - name: titulo
+            label: Título
+            type: string
+            description: Déjalo vacío para usar el de Ajustes del sitio.
+          - name: texto
+            label: Texto
+            type: text
+            description: Déjalo vacío para usar el de Ajustes del sitio.
+
+  - name: sobre_mi
+    label: Sobre mí
+    type: file
+    path: src/data/sobre-mi.json
+    format: json
+    fields:
+      - name: seo_titulo
+        label: Título de la pestaña del navegador
+        type: string
+      - name: seo_descripcion
+        label: Descripción para Google (opcional)
+        type: text
+      - name: bloques
+        label: Secciones de la página
+        description: Cada sección es un bloque. Puedes añadir, eliminar y arrastrar para cambiar el orden.
+        type: block
+        blockKey: tipo
+        list:
+          min: 1
+          collapsible:
+            collapsed: true
+            summary: "{index}. {titulo}{nombre}"
+        blocks:
+          - name: perfil
+            label: Cabecera con foto
+            fields:
+              - name: foto
+                label: Foto
+                type: image
+                description: Déjala vacía para usar la foto de Ajustes del sitio.
+              - name: etiqueta
+                label: Etiqueta pequeña sobre el nombre
+                type: string
+              - name: nombre
+                label: Nombre
+                type: string
+                description: Déjalo vacío para usar tu nombre de Ajustes del sitio.
+              - name: rol
+                label: Cargo o rol
+                type: string
+              - name: presentacion
+                label: Presentación
+                type: text
+              - name: botones
+                label: Botones
+                component: boton
+                list:
+                  max: 3
+                  collapsible:
+                    summary: "{texto}"
+          - name: cifras
+            label: Cifras clave
+            fields:
+              - name: titulo
+                label: Título (opcional)
+                type: string
+              - name: items
+                label: Cifras
+                description: Lo ideal son 3 o 4.
+                type: object
+                list:
+                  min: 1
+                  max: 8
+                  collapsible:
+                    summary: "{valor} {descripcion}"
+                fields:
+                  - name: valor
+                    label: Cifra
+                    type: string
+                    description: "Corta, por ejemplo: 30+ o US$ 2,500 MM"
+                  - name: descripcion
+                    label: Descripción
+                    type: string
+          - name: trayectoria
+            label: Trayectoria (línea de tiempo)
+            fields:
+              - name: titulo
+                label: Título
+                type: string
+              - name: items
+                label: Etapas
+                type: object
+                list:
+                  min: 1
+                  collapsible:
+                    summary: "{titulo}"
+                fields:
+                  - name: etiqueta
+                    label: Etiqueta a la izquierda
+                    type: string
+                    description: "Corta, por ejemplo: Banca privada o 2010-2020"
+                  - name: titulo
+                    label: Título
+                    type: string
+                  - name: texto
+                    label: Descripción
+                    type: text
+          - name: lista
+            label: Lista numerada
+            fields:
+              - name: titulo
+                label: Título
+                type: string
+              - name: items
+                label: Puntos
+                description: Se numeran solos (01, 02, 03...).
+                type: string
+                list: true
+          - name: texto
+            label: Texto libre
+            fields:
+              - name: titulo
+                label: Título (opcional)
+                type: string
+              - name: contenido
+                label: Contenido
+                type: rich-text
+                options:
+                  format: html
+          - name: imagen
+            label: Imagen
+            fields:
+              - name: imagen
+                label: Imagen
+                type: image
+                description: Usa JPG o WebP de menos de 500 KB para que la página cargue rápido.
+              - name: alt
+                label: Descripción de la imagen
+                type: string
+                description: Para lectores de pantalla y Google.
+              - name: pie
+                label: Pie de foto (opcional)
+                type: string
+          - name: cita
+            label: Cita destacada
+            fields:
+              - name: texto
+                label: Cita
+                type: text
+              - name: autor
+                label: Autor (opcional)
+                type: string
+          - name: cta
+            label: Llamada a la acción (panel oscuro)
+            fields:
+              - name: titulo
+                label: Título
+                type: string
+                description: Déjalo vacío para usar el de Ajustes del sitio.
+              - name: texto
+                label: Texto
+                type: text
+                description: Déjalo vacío para usar el de Ajustes del sitio.
+              - name: botones
+                label: Botones
+                description: Sin botones se muestran «Agendar una sesión» y «LinkedIn».
+                component: boton
+                list:
+                  max: 3
+                  collapsible:
+                    summary: "{texto}"
+          - name: newsletter
+            label: Suscripción al newsletter
+            fields:
+              - name: titulo
+                label: Título
+                type: string
+                description: Déjalo vacío para usar el de Ajustes del sitio.
+              - name: texto
+                label: Texto
+                type: text
+                description: Déjalo vacío para usar el de Ajustes del sitio.
+
+  - name: sesiones
+    label: Sesiones
+    type: file
+    path: src/data/sesiones.json
+    format: json
+    fields:
+      - name: titulo
+        label: Título
+        type: string
+      - name: texto
+        label: Texto bajo el título
+        type: text
+      - name: texto_ayuda
+        label: Texto de ayuda bajo el calendario
+        type: string
+      - name: texto_enlace
+        label: Texto del enlace directo a Cal.com
+        type: string
+      - name: seo_descripcion
+        label: Descripción para Google (opcional)
+        type: text
+
+  - name: sitio
+    label: Ajustes del sitio
+    type: file
+    path: src/data/sitio.json
+    format: json
+    fields:
+      - name: name
+        label: Nombre
+        type: string
+        required: true
+      - name: tagline
+        label: Frase principal
+        type: text
+      - name: description
+        label: Descripción del sitio para Google
+        type: text
+      - name: linkedin
+        label: Enlace a tu perfil de LinkedIn
+        type: string
+        pattern: "^https://.+"
+      - name: calUser
+        label: Usuario de Cal.com
+        type: string
+        description: "Lo que va después de cal.com/ en tu enlace. Por ejemplo: marco.portugal"
+        pattern: "^[A-Za-z0-9._/-]+$"
+      - name: photo
+        label: Foto de perfil
+        type: image
+      - name: heroImage
+        label: Imagen de fondo de las cabeceras
+        type: image
+      - name: coverFallback
+        label: Portada por defecto de los artículos
+        type: image
+      - name: showCoverFallback
+        label: Usar la portada por defecto en artículos sin imagen
+        type: boolean
+        default: true
+      - name: newsletter
+        label: Textos del newsletter
+        type: object
+        fields:
+          - { name: titulo, label: Título, type: string }
+          - { name: texto, label: Texto, type: text }
+          - { name: boton, label: Texto del botón, type: string }
+          - { name: nota, label: Nota bajo el formulario, type: string }
+      - name: cta
+        label: Textos de la llamada a la acción (panel oscuro)
+        type: object
+        fields:
+          - { name: titulo, label: Título, type: string }
+          - { name: texto, label: Texto, type: text }

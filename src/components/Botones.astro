@@ -1,0 +1,28 @@
+---
+// Fila de botones definida desde el CMS. El destino se elige de una lista para evitar enlaces mal escritos.
+// `secundario` es la clase del botón no destacado: 'ghost' sobre fondos con imagen oscura.
+import { site } from '../config';
+import type { Boton } from '../lib/contenido';
+interface Props { botones: Boton[]; secundario?: 'secondary' | 'ghost' }
+const { botones, secundario = 'secondary' } = Astro.props;
+
+const destinos: Record<string, string> = {
+  sesiones: '/sesiones/',
+  articulos: '/articulos/',
+  'sobre-mi': '/sobre-mi/',
+  linkedin: site.linkedin,
+};
+const items = botones
+  .map((b) => ({ ...b, href: b.destino === 'otro' ? b.url : destinos[b.destino] }))
+  .filter((b) => b.texto && b.href);
+---
+{items.length > 0 && (
+  <div class="actions">
+    {items.map((b) => {
+      const externo = /^https?:\/\//.test(b.href);
+      return (
+        <a class:list={['btn', b.estilo === 'primary' ? 'primary' : secundario]} href={b.href} rel={externo ? 'noopener' : undefined} target={externo ? '_blank' : undefined}>{b.texto}</a>
+      );
+    })}
+  </div>
+)}

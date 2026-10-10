@@ -1,19 +1,24 @@
 ---
 // Panel oscuro de cierre con botones. Reutilizado en Inicio, Sobre mí y artículos.
+// Título y texto vacíos usan los de "Ajustes del sitio"; sin botones propios usa los dos por defecto.
 import { site } from '../config';
-interface Props { title?: string; text?: string }
-const {
-  title = '¿Quieres llevar tu empresa al siguiente nivel?',
-  text = 'Si quieres conversar sobre una decisión concreta de tu negocio, agenda una sesión conmigo.',
-} = Astro.props;
+import Botones from './Botones.astro';
+import type { Boton } from '../lib/contenido';
+interface Props { title?: string; text?: string; botones?: Boton[] }
+const { title, text, botones = [] } = Astro.props;
+const titulo = title || site.cta.titulo;
+const texto = text || site.cta.texto;
+const propios = botones.filter((b) => b.texto);
 ---
 <section class="cta">
-  <h2>{title}</h2>
-  <p>{text}</p>
-  <div class="actions">
-    <slot>
+  <h2>{titulo}</h2>
+  {texto && <p>{texto}</p>}
+  {propios.length > 0 ? (
+    <Botones botones={propios} />
+  ) : (
+    <div class="actions">
       <a class="btn primary" href="/sesiones/">Agendar una sesión</a>
       <a class="btn secondary" href={site.linkedin} rel="noopener" target="_blank">LinkedIn</a>
-    </slot>
-  </div>
+    </div>
+  )}
 </section>

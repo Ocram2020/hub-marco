@@ -1,0 +1,20 @@
+---
+// Cabecera con foto. `principal` indica que lleva el <h1> de la página (solo el primer perfil).
+import { site } from '../../config';
+import Botones from '../Botones.astro';
+import type { Bloque } from '../../lib/contenido';
+interface Props { bloque: Extract<Bloque, { tipo: 'perfil' }>; principal?: boolean }
+const { bloque: b, principal = false } = Astro.props;
+const nombre = b.nombre || site.name;
+const Titulo = principal ? 'h1' : 'h2';
+---
+<section class="about-hero">
+  <img class="avatar" src={b.foto || site.photo} alt={`Foto de ${nombre}`} width="400" height="400" />
+  <div class="about-hero__text">
+    {b.etiqueta && <p class="eyebrow">{b.etiqueta}</p>}
+    <Titulo class="about-hero__name">{nombre}</Titulo>
+    {b.rol && <p class="role">{b.rol}</p>}
+    {b.presentacion && <p class="lead">{b.presentacion}</p>}
+    <Botones botones={b.botones} />
+  </div>
+</section>

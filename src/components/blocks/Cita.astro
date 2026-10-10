@@ -1,0 +1,11 @@
+---
+import type { Bloque } from '../../lib/contenido';
+interface Props { bloque: Extract<Bloque, { tipo: 'cita' }> }
+const { bloque: b } = Astro.props;
+---
+{b.texto && (
+  <blockquote class="quote">
+    <p>{b.texto}</p>
+    {b.autor && <footer>{b.autor}</footer>}
+  </blockquote>
+)}

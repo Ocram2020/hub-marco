@@ -1,0 +1,57 @@
+{
+  "seo_titulo": "Sobre mí",
+  "seo_descripcion": "",
+  "bloques": [
+    {
+      "tipo": "perfil",
+      "etiqueta": "Sobre mí",
+      "rol": "Consultor de gestión · Más de 30 años en banca y negocios financieros",
+      "presentacion": "Sé transformar negocios financieros porque he dirigido, al mismo tiempo, negocio, riesgos, operaciones, tecnología y personas.",
+      "botones": [
+        { "texto": "Agendar una sesión", "destino": "sesiones", "estilo": "primary" },
+        { "texto": "Ver perfil en LinkedIn", "destino": "linkedin", "estilo": "secondary" }
+      ]
+    },
+    {
+      "tipo": "cifras",
+      "items": [
+        { "valor": "30+", "descripcion": "años en banca y negocios financieros" },
+        { "valor": "22", "descripcion": "años en el BCP: de funcionario a gerente regional" },
+        { "valor": "3,000", "descripcion": "colaboradores liderados" },
+        { "valor": "US$ 2,500 MM", "descripcion": "de portafolio gestionado" }
+      ]
+    },
+    {
+      "tipo": "trayectoria",
+      "titulo": "Trayectoria",
+      "items": [
+        {
+          "etiqueta": "Banca privada",
+          "titulo": "Banco de Crédito del Perú",
+          "texto": "Carrera de 22 años, de la banca mayorista en provincias a la gerencia regional de Lima. Planeamiento, riesgos, banca de negocios y transformación comercial: de 0% a 34% de participación de mercado en el segmento."
+        },
+        {
+          "etiqueta": "Alta dirección",
+          "titulo": "Banco de la Nación",
+          "texto": "Gerente Central de Negocios y Tecnología. Dirigí negocio, operaciones e informática, e impulsé la integración de Plin y Yape y la migración de cerca del 80% de las operaciones a canales alternos."
+        },
+        {
+          "etiqueta": "Hoy",
+          "titulo": "Consultoría de gestión",
+          "texto": "Asesoro a empresas e instituciones en estrategia, financiamiento y transformación, con la visión de quien ha dirigido el negocio por dentro."
+        }
+      ]
+    },
+    {
+      "tipo": "lista",
+      "titulo": "En qué puedo ayudarte",
+      "items": [
+        "Visión estratégica y propuesta de valor",
+        "Estructuración de financiamientos y nuevos negocios",
+        "Operaciones y canales digitales al servicio de la estrategia",
+        "Conocimiento profundo del mercado peruano"
+      ]
+    },
+    { "tipo": "cta" }
+  ]
+}

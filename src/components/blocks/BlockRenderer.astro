@@ -1,0 +1,35 @@
+---
+// Pinta la lista de bloques que Marco arma desde Pages CMS, en el orden en que los dejó.
+// Para añadir un tipo nuevo: esquema en src/lib/contenido.ts, componente aquí y formulario en .pages.yml.
+import type { Bloque } from '../../lib/contenido';
+import Perfil from './Perfil.astro';
+import Cifras from './Cifras.astro';
+import Trayectoria from './Trayectoria.astro';
+import ListaNumerada from './ListaNumerada.astro';
+import Texto from './Texto.astro';
+import Imagen from './Imagen.astro';
+import Cita from './Cita.astro';
+import Cta from '../Cta.astro';
+import Newsletter from '../Newsletter.astro';
+
+interface Props { bloques: Bloque[]; tituloRespaldo: string }
+const { bloques, tituloRespaldo } = Astro.props;
+// El primer bloque "perfil" lleva el <h1>. Si no hay ninguno, se pinta un <h1> de respaldo.
+const principal = bloques.findIndex((b) => b.tipo === 'perfil');
+---
+<div class="blocks">
+  {principal === -1 && <h1 class="blocks__title">{tituloRespaldo}</h1>}
+  {bloques.map((b, i) => (
+    <div class:list={['block', `block--${b.tipo}`]}>
+      {b.tipo === 'perfil' && <Perfil bloque={b} principal={i === principal} />}
+      {b.tipo === 'cifras' && <Cifras bloque={b} />}
+      {b.tipo === 'trayectoria' && <Trayectoria bloque={b} />}
+      {b.tipo === 'lista' && <ListaNumerada bloque={b} />}
+      {b.tipo === 'texto' && <Texto bloque={b} />}
+      {b.tipo === 'imagen' && <Imagen bloque={b} />}
+      {b.tipo === 'cita' && <Cita bloque={b} />}
+      {b.tipo === 'cta' && <Cta title={b.titulo} text={b.texto} botones={b.botones} />}
+      {b.tipo === 'newsletter' && <Newsletter title={b.titulo} text={b.texto} uid={i} />}
+    </div>
+  ))}
+</div>

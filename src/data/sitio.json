@@ -1,0 +1,21 @@
+{
+  "name": "Marco Portugal",
+  "tagline": "Ideas y análisis para tomar mejores decisiones en tu negocio.",
+  "description": "Artículos, newsletter y sesiones de consultoría de Marco Portugal.",
+  "linkedin": "https://www.linkedin.com/in/marcoportugal1",
+  "calUser": "marco.portugal",
+  "heroImage": "/images/header-placeholder.png",
+  "photo": "/images/marco-placeholder.jpeg",
+  "coverFallback": "/images/cover-placeholder.png",
+  "showCoverFallback": true,
+  "newsletter": {
+    "titulo": "No te pierdas lo que viene",
+    "texto": "Recibe en tu correo nuevos artículos, ideas y análisis sobre negocios, estrategia, innovación y transformación.",
+    "boton": "Suscribirme",
+    "nota": "Sin spam. Puedes cancelar tu suscripción cuando quieras."
+  },
+  "cta": {
+    "titulo": "¿Quieres llevar tu empresa al siguiente nivel?",
+    "texto": "Si quieres conversar sobre una decisión concreta de tu negocio, agenda una sesión conmigo."
+  }
+}
