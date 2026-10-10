@@ -1,11 +1,11 @@
 {
-  "name": "Marco Portugal",
+  "name": "Marco Portugal Anto estuvo aqui",
   "tagline": "Ideas y análisis para tomar mejores decisiones en tu negocio.",
   "description": "Artículos, newsletter y sesiones de consultoría de Marco Portugal.",
   "linkedin": "https://www.linkedin.com/in/marcoportugal1",
   "calUser": "marco.portugal",
-  "heroImage": "/images/header-placeholder.png",
   "photo": "/images/marco-placeholder.jpeg",
+  "heroImage": "/images/header-placeholder.png",
   "coverFallback": "/images/cover-placeholder.png",
   "showCoverFallback": true,
   "newsletter": {
