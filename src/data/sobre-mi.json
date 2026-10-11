@@ -1,24 +1,43 @@
 {
   "seo_titulo": "Sobre mí",
-  "seo_descripcion": "",
   "bloques": [
     {
       "tipo": "perfil",
-      "etiqueta": "Sobre mí",
+      "etiqueta": "Sobre mí (ANTO ESTUVO AQUI)",
       "rol": "Consultor de gestión · Más de 30 años en banca y negocios financieros",
       "presentacion": "Sé transformar negocios financieros porque he dirigido, al mismo tiempo, negocio, riesgos, operaciones, tecnología y personas.",
       "botones": [
-        { "texto": "Agendar una sesión", "destino": "sesiones", "estilo": "primary" },
-        { "texto": "Ver perfil en LinkedIn", "destino": "linkedin", "estilo": "secondary" }
+        {
+          "texto": "Agendar una sesión",
+          "destino": "sesiones",
+          "estilo": "primary"
+        },
+        {
+          "texto": "Ver perfil en LinkedIn",
+          "destino": "linkedin",
+          "estilo": "secondary"
+        }
       ]
     },
     {
       "tipo": "cifras",
       "items": [
-        { "valor": "30+", "descripcion": "años en banca y negocios financieros" },
-        { "valor": "22", "descripcion": "años en el BCP: de funcionario a gerente regional" },
-        { "valor": "3,000", "descripcion": "colaboradores liderados" },
-        { "valor": "US$ 2,500 MM", "descripcion": "de portafolio gestionado" }
+        {
+          "valor": "30+",
+          "descripcion": "años en banca y negocios financieros"
+        },
+        {
+          "valor": "22",
+          "descripcion": "años en el BCP: de funcionario a gerente regional"
+        },
+        {
+          "valor": "3,000",
+          "descripcion": "colaboradores liderados"
+        },
+        {
+          "valor": "US$ 2,500 MM",
+          "descripcion": "de portafolio gestionado"
+        }
       ]
     },
     {
@@ -52,6 +71,8 @@
         "Conocimiento profundo del mercado peruano"
       ]
     },
-    { "tipo": "cta" }
+    {
+      "tipo": "cta"
+    }
   ]
 }
